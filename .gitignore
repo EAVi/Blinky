@@ -1,0 +1,12 @@
+src/.vs
+*vcxproj.user
+
+#comment these out if I ever decide to put executable in the repo
+src/Debug
+src/Release
+src/x64
+src/Blinky/Debug
+src/Blinky/Release
+src/Blinky/x64
+
+src/Swole/*.zip #I'm a doofus sometimes and when I package the exe files I forget to delete the zips

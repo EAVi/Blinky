@@ -1,0 +1,8 @@
+#ifndef BLINKY_CONNECTION_MANAGER
+#define BLINKY_CONNECTION_MANAGER
+
+class ConnectionManager
+{
+};
+
+#endif //!BLINKY_CONNECTION_MANAGER
