@@ -11,13 +11,16 @@
 class SocketAddress
 {
 public:
+	SocketAddress();
 	SocketAddress(uint32_t inAddress, uint16_t inPort); //ipv4
-	SocketAddress(const sockaddr& inSockAddr); //generalized
-	SocketAddress(const char* inStr); //create socket address from string
-
+	SocketAddress(const sockaddr& inSockAddr); //ipv4
+	SocketAddress(const char* inStr); //create socket address from string ipv4/6
+	void SetAddressPort(uint16_t port); // after port binding, assign the port
+	inline sockaddr_in* AsIPV4() { return (sockaddr_in*)&m_SockAddr; };
+	inline sockaddr* AsSockAddr() { return (sockaddr*)&m_SockAddr; };
+	inline sockaddr_in6* AsIPV6() { return (sockaddr_in6*)&m_SockAddr; };
+	const int Size() const;
 private:
-	FORCEINLINE sockaddr_in* AsIPV4();
-	FORCEINLINE sockaddr_in6* AsIPV6();
 	sockaddr_storage m_SockAddr;
 };
 

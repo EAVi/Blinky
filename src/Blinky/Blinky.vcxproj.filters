@@ -21,12 +21,18 @@
     <ClCompile Include="SocketAddress.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UDPSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SocketAddress.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ConnectionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UDPSocket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
