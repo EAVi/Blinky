@@ -12,6 +12,7 @@ class SocketAddress
 {
 public:
 	SocketAddress();
+	SocketAddress(uint16_t family);//ipv4/6 ephemeral address
 	SocketAddress(uint32_t inAddress, uint16_t inPort); //ipv4
 	SocketAddress(const sockaddr& inSockAddr); //ipv4
 	SocketAddress(const char* inStr); //create socket address from string ipv4/6

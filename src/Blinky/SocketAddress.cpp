@@ -8,6 +8,32 @@ SocketAddress::SocketAddress()
 {
 }
 
+SocketAddress::SocketAddress(uint16_t family)
+{
+	switch (family)
+	{
+		case AF_INET:
+		{
+			auto ipv4 = AsIPV4();
+			memset(ipv4, 0, sizeof(sockaddr_in));
+			ipv4->sin_port = 0;
+			ipv4->sin_family = family;
+			ipv4->sin_addr.S_un.S_addr = INADDR_ANY;
+		}
+		break;
+		case AF_INET6:
+		{
+			auto ipv6 = AsIPV6();
+			memset(ipv6, 0, sizeof(sockaddr_in6));
+			ipv6->sin6_port = 0;
+			ipv6->sin6_family = family;
+			ipv6->sin6_flowinfo = 0;
+			memcpy(&ipv6->sin6_addr, &in6addr_any, sizeof(IN6_ADDR));
+		}
+		break;
+	}
+}
+
 SocketAddress::SocketAddress(uint32_t inAddress, uint16_t inPort)
 {
 	sockaddr_in* addr = AsIPV4();
@@ -57,13 +83,13 @@ void SocketAddress::SetAddressPort(uint16_t port)
 		case AF_INET:
 		{
 			auto address = AsIPV4();
-			address->sin_port = port;
+			address->sin_port = htons(port);
 			break;
 		}
 		case AF_INET6:
 		{
 			auto address = AsIPV6();
-			address->sin6_port = port;
+			address->sin6_port = htons(port);
 			break;
 		}
 		default:
@@ -79,6 +105,7 @@ const int SocketAddress::Size() const
 		case AF_INET: return sizeof(sockaddr_in);
 		case AF_INET6: return sizeof(sockaddr_in6);
 	}
-	printf("unsupported or undefined address family %d\n", m_SockAddr.ss_family);
+
+	printf("unsupported or undefined address family, if family is not expected, use sizeof(sockaddr_storage)%d\n", m_SockAddr.ss_family);
 	return sizeof(sockaddr_storage);
 }

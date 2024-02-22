@@ -10,7 +10,7 @@ public:
 	~UDPSocket();
 	bool Bind(SocketAddress& addr);
 	bool SendTo(const void* buf, size_t len, SocketAddress& to);
-	int RecvFrom(void * dst, size_t len, SocketAddress& from);
+	int RecvFrom(void * dst, size_t len, SocketAddress& from); //nonblocking recieve
 private:
 	SOCKET m_Socket;
 	
