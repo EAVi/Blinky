@@ -145,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConnectionManager.h" />
+    <ClInclude Include="Packet.h" />
     <ClInclude Include="SocketAddress.h" />
     <ClInclude Include="UDPSocket.h" />
   </ItemGroup>
